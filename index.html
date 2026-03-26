@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Under Maintenance</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #0e0b1a;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Animated gradient orbs in the background */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.4;
+      animation: float 8s ease-in-out infinite;
+    }
+    .orb-1 {
+      width: 400px; height: 400px;
+      background: #8B5CF6;
+      top: -100px; left: -100px;
+      animation-delay: 0s;
+    }
+    .orb-2 {
+      width: 350px; height: 350px;
+      background: #F97316;
+      bottom: -80px; right: -80px;
+      animation-delay: -2s;
+    }
+    .orb-3 {
+      width: 300px; height: 300px;
+      background: #00D4FF;
+      top: 10%; right: 15%;
+      animation-delay: -4s;
+    }
+    .orb-4 {
+      width: 250px; height: 250px;
+      background: #EC4899;
+      bottom: 10%; left: 20%;
+      animation-delay: -6s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -20px) scale(1.05); }
+      66% { transform: translate(-20px, 20px) scale(0.95); }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2rem;
+      max-width: 600px;
+    }
+
+    .logo-wrapper {
+      margin-bottom: 2rem;
+      animation: logoEntry 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .logo-wrapper img {
+      width: 140px;
+      height: 140px;
+      filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.4));
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes logoEntry {
+      from { opacity: 0; transform: translateY(-30px) scale(0.8); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.4)); }
+      50% { filter: drop-shadow(0 0 50px rgba(0, 212, 255, 0.5)); }
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #8B5CF6, #00D4FF, #F97316, #EC4899);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientShift 6s ease-in-out infinite, textEntry 1s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+      margin-bottom: 1rem;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    @keyframes textEntry {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.7;
+      animation: textEntry 1s 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Gear animation */
+    .gears {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 2.5rem;
+      animation: textEntry 1s 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .gear {
+      position: relative;
+    }
+
+    .gear svg {
+      animation: spin 6s linear infinite;
+    }
+
+    .gear:nth-child(2) svg {
+      animation-direction: reverse;
+      animation-duration: 4.5s;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Progress bar */
+    .progress-wrapper {
+      width: 100%;
+      max-width: 320px;
+      margin: 0 auto 2rem;
+      animation: textEntry 1s 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .progress-bar {
+      height: 4px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 30%;
+      border-radius: 2px;
+      background: linear-gradient(90deg, #8B5CF6, #00D4FF, #F97316);
+      animation: loading 2s ease-in-out infinite;
+    }
+
+    @keyframes loading {
+      0% { width: 0%; margin-left: 0%; }
+      50% { width: 40%; margin-left: 30%; }
+      100% { width: 0%; margin-left: 100%; }
+    }
+
+    .footer-text {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.3);
+      animation: textEntry 1s 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 1.8rem; }
+      .subtitle { font-size: 1rem; }
+      .logo-wrapper img { width: 100px; height: 100px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="orb orb-4"></div>
+
+  <div class="container">
+    <div class="logo-wrapper">
+      <img src="512.png" alt="Logo">
+    </div>
+
+    <h1>Under Maintenance</h1>
+
+    <p class="subtitle">
+      We'll be back shortly.
+    </p>
+
+    <div class="gears">
+      <div class="gear" style="margin-right: -8px;">
+        <svg width="52" height="52" viewBox="0 0 24 24" fill="none">
+          <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" stroke="#8B5CF6" stroke-width="1.5"/>
+          <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z" stroke="#8B5CF6" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="gear" style="margin-top: 18px;">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+          <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" stroke="#00D4FF" stroke-width="1.5"/>
+          <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z" stroke="#00D4FF" stroke-width="1.5"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="progress-wrapper">
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
+      </div>
+    </div>
+
+    <p class="footer-text">Thank you for your patience.</p>
+  </div>
+
+</body>
+</html>
